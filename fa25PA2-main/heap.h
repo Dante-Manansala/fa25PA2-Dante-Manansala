@@ -29,8 +29,11 @@ struct MinHeap {
     void upheap(int pos, int weightArr[]) {
         // TODO: swap child upward while smaller than parent
 
+        // for recursion if implemented
+        // if (pos <= 0) return; // if head or negative, return
+
         ///NOTE: refer pos as child
-        // loop till gone through heap
+        // loop till reached top of heap
         while (pos > 0) {
             int parent = (pos - 1) / 2;
 
@@ -46,25 +49,30 @@ struct MinHeap {
                 data[parent] = temp;
 
                 pos = parent; // update
+                /* // recursion to next node(up). NOTE: replace break with return;
+                 * uphead(parent, weightArr);
+                 */
             } else break; // stop swaping
         }
     }
 
-    //move down the tree till at leaf
+    //move down the tree till at leaf or till hit a value smaller
     void downheap(int pos, int weightArr[]) {
         // TODO: swap parent downward while larger than any child
+        // both child nodes of current/parent
         int left;
         int right;
-        int smallest;
+
+        int smallest; // keep check whether left or right is smaller than parent
 
         ///NOTE: moving down heap, number increases, prevent going over heap size
-        //loop
+        //loop till reach leaf or hit a node where left/right nodes are smaller than current node
         while (true) {
             // child of current node
             left = 2 * pos + 1;
             right = left + 1;
 
-            smallest = pos; // set smallest to current node
+            smallest = pos; // set smallest to current/parent node
 
             /// NOTE: look at upheap for each weight checks for more information
             // make sure it within range/size
@@ -94,7 +102,10 @@ struct MinHeap {
                 data[smallest] = temp;
 
                 pos = smallest; // update new current node
-            } else break;
+                /* // recursion to next node(down). NOTE: replace break with return;
+                *  downheap(smallest, weightArr);
+                */
+            } else break; // exit loop when smallest doesn't update
         }
     }
 };
