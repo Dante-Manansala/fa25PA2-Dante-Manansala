@@ -1,3 +1,3 @@
-/Users/manjumuralidharan/CLionProjects/fa25PA2/cmake-build-debug/CMakeFiles/fa25PA2.dir
-/Users/manjumuralidharan/CLionProjects/fa25PA2/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/manjumuralidharan/CLionProjects/fa25PA2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Dante Ian/Desktop/C++/CS-210/fa25PA2-main/fa25PA2-main/cmake-build-debug/CMakeFiles/fa25PA2.dir
+C:/Users/Dante Ian/Desktop/C++/CS-210/fa25PA2-main/fa25PA2-main/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Dante Ian/Desktop/C++/CS-210/fa25PA2-main/fa25PA2-main/cmake-build-debug/CMakeFiles/rebuild_cache.dir

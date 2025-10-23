@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.24"
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "fa25PA2::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-fa25PA2-Debug-9266391917351d65083b.json",
+					"jsonFile" : "target-fa25PA2-Debug-45ec4e502234d58e90b5.json",
 					"name" : "fa25PA2",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/manjumuralidharan/CLionProjects/fa25PA2/cmake-build-debug",
-		"source" : "/Users/manjumuralidharan/CLionProjects/fa25PA2"
+		"build" : "C:/Users/Dante Ian/Desktop/C++/CS-210/fa25PA2-main/fa25PA2-main/cmake-build-debug",
+		"source" : "C:/Users/Dante Ian/Desktop/C++/CS-210/fa25PA2-main/fa25PA2-main"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 4
+		"minor" : 8
 	}
 }
