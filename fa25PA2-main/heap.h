@@ -16,14 +16,40 @@ struct MinHeap {
 
     void push(int idx, int weightArr[]) {
         // TODO: insert index at end of heap, restore order using upheap()
+
+        ///NOTE: refer supported size to data array size that was initialized
+        // check if size is beyond supported array size
+        if(size >= 64) {
+            std::cout << "Heap full, action canceled." << std::endl;
+            return;
+        }
+
+        // add idx to end of data array of current
+        // upheap to reorder new value added
+        // increase size of current ammount of items in heap
+        data[size] = idx;
+        upheap(size,weightArr);
+        size++;
     }
 
     int pop(int weightArr[]) {
         // TODO: remove and return smallest index
         // Replace root with last element, then call downheap()
 
+        //check empty array, check if size ever became negative
+        if(size <= 0){
+            std::cout << "Heap empty, returning -1." << std::endl;
+            return -1;
+        }
 
-        return -1; // something wrong has happened
+        int head = data[0]; // save head of heap for return
+        size--; // move pointer to known data being used
+
+        //replace head in heap with slowest in data, purpose of downheap
+        data[0] = data[size];
+        downheap(0,weightArr);
+
+        return head; // old head of heap
     }
 
     void upheap(int pos, int weightArr[]) {
