@@ -104,7 +104,7 @@ int buildEncodingTree(int nextFree) {
 
     MinHeap heap;
 
-    ///NOTE: nextFree is ammount of leaf nodes
+    ///NOTE: nextFree is ammount of leaf nodes, currently. will be used to count total nodes
     // adds/push ammount of leaf nodes into heap
     for (int i = 0; i < nextFree; ++i) heap.push(i, weightArr);
 
@@ -119,7 +119,11 @@ int buildEncodingTree(int nextFree) {
         weightArr[parent] = weightArr[nodeOne] + weightArr[nodeTwo];
 
         //TODO: check proper say to set left/right pointers for parent
-        
+        ///NOTE: assuming left and right array are the "pointers" for parent
+        ///      assuming parent spot won't be overriden
+        //create left/right pointers from parent node
+        leftArr[parent] = nodeOne;
+        rightArr[parent] = nodeTwo;
 
         //add new parent node to heap
         heap.push(parent,weightArr);
