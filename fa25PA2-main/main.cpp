@@ -148,6 +148,7 @@ void generateCodes(int root, string codes[]) {
     //TODO: replace input.txt with "cybersecurity", once test with "banana" is done
     ///NOTE:yses "input.txt" in debug folder and NOT IN MAIN FOLDER
     ///     not clear what is defined as edge
+    ///NOTE:test output of "banana" code length based on heap height
 
     if (root <= 0) return; // nothing in tree
 
@@ -167,8 +168,9 @@ void generateCodes(int root, string codes[]) {
         pair<int, string> topPair = stack.top(); // next node from stack
         stack.pop(); // remove from stack
 
-        int node = topPair.first;
-        string path = topPair.second;
+        //allowing for easier reading
+        int node = topPair.first; // identification
+        string path = topPair.second; // path direction holder
 
         //children of node
         int left = leftArr[node];
@@ -184,7 +186,7 @@ void generateCodes(int root, string codes[]) {
         } else {
             ///NOTE: left process first
             ///      load path with direction taken
-            // check if node exists, pushes and adds bit, ammount depends on how deep leaf are
+            // check if node exists, pushes and adds bit, ammount of bits depends on how deep leaf are
             if (right != -1) stack.push(make_pair(right, path + "1"));
             if (left != -1) stack.push(make_pair(left, path + "0"));
         }
