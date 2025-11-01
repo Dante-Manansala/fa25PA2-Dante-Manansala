@@ -99,14 +99,19 @@ int buildEncodingTree(int nextFree) {
     //    - Push new parent index back into the heap
     // 4. Return the index of the last remaining node (root)
 
-    // Check if there are no leaf nodes or single(head)
+    ///NOTE: assuming each char is only in leaf
 
+    // if empty, return -1, invalid input
+    if(nextFree <= 0) return -1;
 
     MinHeap heap;
 
     ///NOTE: nextFree is ammount of leaf nodes, currently. will be used to count total nodes
     // adds/push ammount of leaf nodes into heap
     for (int i = 0; i < nextFree; ++i) heap.push(i, weightArr);
+
+    // pop if 1, just root
+    if (heap.size == 1) return heap.pop(weightArr);
 
     while(heap.size > 1){
         //pops 2 smallest nodes
@@ -118,12 +123,13 @@ int buildEncodingTree(int nextFree) {
         nextFree++; //TODO (Optional): maybe check for overflow if nextFree passes MAX_NODES, that should exist. note that createLeafNodes doesn't have a check.
         weightArr[parent] = weightArr[nodeOne] + weightArr[nodeTwo];
 
-        //TODO: check proper say to set left/right pointers for parent
+        //DONE: check proper say to set left/right pointers for parent
         ///NOTE: assuming left and right array are the "pointers" for parent
         ///      assuming parent spot won't be overriden
         //create left/right pointers from parent node
         leftArr[parent] = nodeOne;
         rightArr[parent] = nodeTwo;
+        //charArr[parent]   = '\0'; // clear char at node
 
         //add new parent node to heap
         heap.push(parent,weightArr);
@@ -139,8 +145,50 @@ void generateCodes(int root, string codes[]) {
     // Left edge adds '0', right edge adds '1'.
     // Record code when a leaf node is reached.
 
+    //TODO: replace input.txt with "cybersecurity", once test with "banana" is done
+    ///NOTE:yses "input.txt" in debug folder and NOT IN MAIN FOLDER
+    ///     not clear what is defined as edge
 
+    if (root <= 0) return; // nothing in tree
 
+    // check for single node/only root
+    if (leftArr[root] == -1 && rightArr[root] == -1) {
+        //check if within char bounds
+        if (charArr[root] >= 'a' && charArr[root] <= 'z') codes[charArr[root] - 'a'] = "0";
+        return;
+    }
+
+    //load root into stack for while loop
+    stack<pair<int, string>> stack;
+    stack.push(make_pair(root, "")); // lets while loop run initially
+
+    while (!stack.empty()) {
+        //load next char to be processed from stack
+        pair<int, string> topPair = stack.top(); // next node from stack
+        stack.pop(); // remove from stack
+
+        int node = topPair.first;
+        string path = topPair.second;
+
+        //children of node
+        int left = leftArr[node];
+        int right = rightArr[node];
+
+        //set/check if leaf node
+        //else check if single or double noded from parent
+        if (left == -1 && right == -1) {
+            //check if char within bounds
+            if (charArr[node] >= 'a' && charArr[node] <= 'z'){
+                codes[charArr[node] - 'a'] = path; // update code for char
+                }
+        } else {
+            ///NOTE: left process first
+            ///      load path with direction taken
+            // check if node exists, pushes and adds bit, ammount depends on how deep leaf are
+            if (right != -1) stack.push(make_pair(right, path + "1"));
+            if (left != -1) stack.push(make_pair(left, path + "0"));
+        }
+    }
 }
 
 // Step 5: Print table and encoded message
